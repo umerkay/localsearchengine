@@ -27,4 +27,4 @@ def loadIndices():
     invInd.loadFromStorage()
 
     #queryDocIDs("tyranny", lex, invInd, fwdInd)
-    print(Query(fwdInd, invInd, lex, "TikTok").getResults().rankResults())
+    print(Query(fwdInd, invInd, lex, "Trump").getResults().rankResults())

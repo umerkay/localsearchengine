@@ -3,14 +3,14 @@ import os
 
 app = Flask(__name__, static_folder="client/build", static_url_path="")
 
-static = os.path.join(os.path.dirname(os.path.abspath(__file__)), "client", "build")
+static = os.path.join(os.path.dirname(os.path.abspath(__file__)), "client", "dist")
 
-@app.route('/')
-def _home():
-  return send_from_directory(static, 'index.html')
+# @app.route('/')
+# def _home():
+#   return send_from_directory(static, 'index.html')
 
-@app.route('/<path:path>')
-def _static(path):
+@app.route('/<path:path>', methods=['GET', 'POST'])
+def static(path):
   if os.path.isdir(os.path.join(static, path)):
     path = os.path.join(path, 'index.html')
   return send_from_directory(static, path)
