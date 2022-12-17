@@ -1,4 +1,4 @@
-from Indices import lex, invInd, fwdInd, genIndices, loadIndices
+from Indices import loadIndices
 
 loadIndices()
 # genIndices()

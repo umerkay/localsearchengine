@@ -1,4 +1,5 @@
 import json
+from helperfuncs import emoji
 
 class InvIndex:
 
@@ -22,7 +23,7 @@ class InvIndex:
         with open(self.path, 'r') as f:
             self.wordIDs = json.load(f)
 
-        print("loaded",len(self.wordIDs),"words in inverted index")
+        print(emoji("✔"), " Loaded",len(self.wordIDs),"words in inverted index")
 
     def dump(self):
         with open(self.path, "w") as outfile:

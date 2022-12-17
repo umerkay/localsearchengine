@@ -2,6 +2,8 @@ from Query import Query
 from Lexicon import Lexicon
 from FwdIndex import FwdIndex
 from InvIndex import InvIndex
+from timeit import default_timer as timer
+from helperfuncs import emoji
 
 global lex, fwdInd, invInd
 lex = Lexicon("outputs/lexicon.json")
@@ -22,9 +24,24 @@ def genIndices():
     # print(Query(fwdInd, invInd, lex, "tyranny").getResults().rankResults())
 
 def loadIndices():
+    start = timer()
+
     lex.loadFromStorage()
     fwdInd.loadFromStorage()
     invInd.loadFromStorage()
 
-    #queryDocIDs("tyranny", lex, invInd, fwdInd)
-    print(Query(fwdInd, invInd, lex, "Trump").getResults().rankResults())
+    elapsed = timer() - start
+    print(emoji("🕗"), "Loading took ", (str(round(elapsed * 1000)) + "ms") if elapsed < 1 else (str(round(elapsed, 2)) + "s"))
+
+
+    # start = timer()
+
+    # print(Query(fwdInd, invInd, lex, "rift last").getResults().rankResults())
+    # print(Query(fwdInd, invInd, lex, "last rift").getResults().rankResults())
+    # print(Query(fwdInd, invInd, lex, "rift").getResults().rankResults())
+    # print(Query(fwdInd, invInd, lex, "last").getResults().rankResults())
+
+    # elapsed = timer() - start
+    # print(emoji("🕗"), "Query took ", (str(round(elapsed * 1000)) + "ms") if elapsed < 1 else (str(round(elapsed, 2)) + "s"))
+
+   

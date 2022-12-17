@@ -2,10 +2,14 @@ from nltk.corpus import wordnet
 from nltk.corpus import stopwords
 from nltk.stem import snowball
 from nltk.stem import WordNetLemmatizer
+import emoji as emojiLib
 
 stemmer = snowball.SnowballStemmer('english')
 lemmatizer = WordNetLemmatizer()
 stop_words = set(stopwords.words("english"))
+
+def emoji(e):
+    return emojiLib.emojize(emojiLib.demojize(e))
 
 def get_wordnet_pos(treebank_tag):
 

@@ -1,4 +1,5 @@
 import json
+from helperfuncs import emoji
 
 class Lexicon:
 
@@ -15,7 +16,7 @@ class Lexicon:
             self.words = data["words"]
             self.len = data["len"]
 
-        print("loaded",self.len,"words in lexicon")
+        print(emoji("✔"), " Loaded",self.len,"words in lexicon")
 
     def addWord(self, word):
         if(word in self.words): return self.words[word]

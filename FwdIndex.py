@@ -3,6 +3,7 @@ from nltk.tokenize import word_tokenize
 from helperfuncs import get_wordnet_pos, stemmer, lemmatizer, stop_words
 import nltk
 import string
+from helperfuncs import emoji
 
 class FwdIndex:
 
@@ -19,7 +20,7 @@ class FwdIndex:
         with open("outputs/docTable.json", "r") as infile:
             self.docTable = json.load(infile)
 
-        print("loaded",len(self.docs),"docs in forward index")
+        print(emoji("✔"), " Loaded",len(self.docs),"docs in forward index")
 
     def generateFromFiles(self, lexiconObj, file):
         with open(file, 'r') as f:
