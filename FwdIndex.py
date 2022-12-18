@@ -28,9 +28,10 @@ class FwdIndex:
         print(emoji("✔"), " Loaded",len(self.docs),"docs in forward index")
 
     def __processWord(self, docFwdInd, word_lower, i, lexiconObj):
-        if word_lower not in stop_words:
+        if word_lower.isalpha() and word_lower not in stop_words:
             word_stem = stemmer.stem(word_lower)
             # word_stem = lemmatizer.lemmatize(word_lower, get_wordnet_pos(tagged[i][1]))
+            # word_stem = lemmatizer.lemmatize(word_lower)
             id = str(lexiconObj.addWord(word_stem))
 
             if(id in docFwdInd):

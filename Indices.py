@@ -11,11 +11,11 @@ lex = Lexicon("outputs/lexicon.json")
 fwdInd = FwdIndex("outputs/fwdIndex.json")
 invInd = InvIndex("outputs/invIndex.json")
 
-def genIndices():
+def genIndices(fileToIndex):
     start = timer()
     print("Working on it...")
 
-    fwdInd.generateFromFile(lex, "data/newsmax.json")
+    fwdInd.generateFromFile(lex, fileToIndex)
     invInd.generateFromFwdInd(fwdInd)
 
     elapsed = timer() - start
@@ -54,14 +54,14 @@ def loadIndices():
     print(emoji("🕗"), "Loading took ", (str(round(elapsed * 1000)) + "ms") if elapsed < 1 else (str(round(elapsed, 2)) + "s"))
 
 
-    start = timer()
+    # start = timer()
 
-    # print(Query(fwdInd, invInd, lex, "rift last").getResults().rankResults())
-    # print(Query(fwdInd, invInd, lex, "last rift").getResults().rankResults())
-    print(Query(fwdInd, invInd, lex, "president").getResults().rankResults())
-    # print(Query(fwdInd, invInd, lex, "last").getResults().rankResults())
+    # # print(Query(fwdInd, invInd, lex, "rift last").getResults().rankResults())
+    # # print(Query(fwdInd, invInd, lex, "last rift").getResults().rankResults())
+    # print(Query(fwdInd, invInd, lex, "president").getResults().rankResults())
+    # # print(Query(fwdInd, invInd, lex, "last").getResults().rankResults())
 
-    elapsed = timer() - start
-    print(emoji("🕗"), "Query took ", (str(round(elapsed * 1000)) + "ms") if elapsed < 1 else (str(round(elapsed, 2)) + "s"))
+    # elapsed = timer() - start
+    # print(emoji("🕗"), "Query took ", (str(round(elapsed * 1000)) + "ms") if elapsed < 1 else (str(round(elapsed, 2)) + "s"))
 
    
