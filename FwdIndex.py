@@ -12,6 +12,11 @@ class FwdIndex:
         self.path = file
         self.shouldDump = False
         self.docTable = list()
+        # [{
+        #     "wordID": [pos1, pos2, ..., posn]
+        # },{
+        #     "wordID": [pos1, pos2, ..., posn]
+        # }]
 
     def loadFromStorage(self):
         with open(self.path, 'r') as f:
@@ -22,7 +27,22 @@ class FwdIndex:
 
         print(emoji("✔"), " Loaded",len(self.docs),"docs in forward index")
 
-    def generateFromFiles(self, lexiconObj, file):
+    def __processWord(self, docFwdInd, word_lower, i, lexiconObj):
+        if word_lower not in stop_words:
+            word_stem = stemmer.stem(word_lower)
+            # word_stem = lemmatizer.lemmatize(word_lower, get_wordnet_pos(tagged[i][1]))
+            id = str(lexiconObj.addWord(word_stem))
+
+            if(id in docFwdInd):
+                docFwdInd[id].append(i)
+            else:
+                docFwdInd[id] = [i]
+
+    def generateFromFiles(self, lexiconObj, files):
+        for file in files:
+            self.generateFromFile(self, lexiconObj, file)
+
+    def generateFromFile(self, lexiconObj, file):
         with open(file, 'r') as f:
             data = json.load(f)
             for doc in data:
@@ -31,23 +51,20 @@ class FwdIndex:
                 docFwdInd = {}
 
                 words = word_tokenize(stringTxt)
+                titlewords = word_tokenize(doc["title"])
+
                 docFwdInd["wordCount"] = len(words)
-                # tagged = nltk.pos_tag(words)
+                #reduce function calls for optimization and fast running pls thx <3
+                #title words have 0 position always, other positions start from 1....n
+                for word in titlewords:
+                    self.__processWord(docFwdInd, word, 0, lexiconObj)
 
                 for i in range(len(words)):
-                    word_lower = words[i].lower()
-                    if word_lower not in stop_words:
-                        word_stem = stemmer.stem(word_lower)
-                        # word_stem = lemmatizer.lemmatize(word_lower, get_wordnet_pos(tagged[i][1]))
-                        id = str(lexiconObj.addWord(word_stem))
-
-                        if(id in docFwdInd):
-                            docFwdInd[id].append(i)
-                        else:
-                            docFwdInd[id] = [i]
+                    self.__processWord(docFwdInd, words[i].lower(), i + 1, lexiconObj)
 
                 self.addDoc(docFwdInd)
 
+                # tagged = nltk.pos_tag(words)
                 # words = word_tokenize(string)
                 # filtered_list = set([word for word in words if word.casefold() not in stop_words])
                 # tagged = nltk.pos_tag(filtered_list)

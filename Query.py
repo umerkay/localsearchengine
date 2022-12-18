@@ -40,7 +40,7 @@ class Query:
 
                 tf = (count) / (self.fwdInd.docs[docID]["wordCount"])
                 idf = math.log(1 + (len(self.fwdInd.docs) / len(self.invInd.wordIDs[self.wordIDs[i]])))
-
+                 
                 if(docID in rankedResults):
                     rankedResults[docID] += tf * idf
                 else:

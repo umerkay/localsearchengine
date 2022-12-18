@@ -1,4 +1,5 @@
-from Indices import loadIndices
+from Indices import loadIndices, genIndices
 
-loadIndices()
-# genIndices()
+if __name__ == '__main__':
+    loadIndices()
+    # genIndices()

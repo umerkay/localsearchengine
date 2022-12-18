@@ -6,18 +6,28 @@ class InvIndex:
     def __init__(self, path):
         self.wordIDs = {}
         self.path = path
+        #{
+        #    "wordID": [[docID, count], [docID, count]],
+        #    "wordID": [[docID, count], [docID, count]]
+        # }
 
     def generateFromFwdInd(self, FwdIndex):
         for docID in range(len(FwdIndex.docs)):
-            for wordID in FwdIndex.docs[docID]:
-                if(wordID == "wordCount"): continue
-                #pls fix this
-                wordID = str(wordID)
-                tuple = [docID, len(FwdIndex.docs[docID][wordID])]
-                if(wordID in self.wordIDs):
-                    self.wordIDs[wordID].append(tuple)
-                else:
-                    self.wordIDs[wordID] = [tuple]
+            self.appendDoc(FwdIndex.docs[docID], docID)
+        # for doc in FwdIndex.docs:
+        #     self.appendDoc(doc)
+    
+    def appendDoc(self, doc, docID):
+        for wordID in doc:
+            if(wordID == "wordCount"): continue
+            #pls fix this
+            wordID = str(wordID)
+            #document ID, word count of wordid in docid
+            tuple = [docID, len(doc[wordID])]
+            if(wordID in self.wordIDs):
+                self.wordIDs[wordID].append(tuple)
+            else:
+                self.wordIDs[wordID] = [tuple]
 
     def loadFromStorage(self):
         with open(self.path, 'r') as f:
