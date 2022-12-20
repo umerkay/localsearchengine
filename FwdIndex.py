@@ -1,9 +1,11 @@
 import json
-from nltk.tokenize import word_tokenize
+from nltk.tokenize import word_tokenize, WordPunctTokenizer
 from helperfuncs import get_wordnet_pos, stemmer, lemmatizer, stop_words
 import nltk
 import string
 from helperfuncs import emoji
+
+tokenizer = WordPunctTokenizer()
 
 class FwdIndex:
 
@@ -44,26 +46,40 @@ class FwdIndex:
             self.generateFromFile(self, lexiconObj, file)
 
     def generateFromFile(self, lexiconObj, file):
+        _punct = str.maketrans('', '', string.punctuation)
+
         with open(file, 'r') as f:
             data = json.load(f)
             for doc in data:
-                stringTxt = doc["content"].translate(str.maketrans('', '', string.punctuation))
+                # stringTxt = doc["content"].translate(_punct)
                 self.docTable.append(doc["id"])
                 docFwdInd = {}
 
-                words = word_tokenize(stringTxt)
-                titlewords = word_tokenize(doc["title"])
+                # words = word_tokenize(doc["content"])
+                # titlewords = word_tokenize(doc["title"])
+                words = tokenizer.tokenize(doc["content"])
 
                 docFwdInd["wordCount"] = len(words)
+                
                 #reduce function calls for optimization and fast running pls thx <3
                 #title words have 0 position always, other positions start from 1....n
-                for word in titlewords:
-                    self.__processWord(docFwdInd, word, 0, lexiconObj)
+                # for word in titlewords:
+                #     self.__processWord(docFwdInd, word, 0, lexiconObj)
 
                 for i in range(len(words)):
-                    self.__processWord(docFwdInd, words[i].lower(), i + 1, lexiconObj)
+                    word_lower = words[i].lower()
+                    if word_lower.isalpha() and word_lower not in stop_words:
+                        word_stem = stemmer.stem(word_lower)
+                        id = str(lexiconObj.addWord(word_stem))
 
-                self.addDoc(docFwdInd)
+                        if(id in docFwdInd):
+                            docFwdInd[id].append(i)
+                        else:
+                            docFwdInd[id] = [i]
+
+                # self.addDoc(docFwdInd)
+                
+                self.docs.append(docFwdInd)
 
                 # tagged = nltk.pos_tag(words)
                 # words = word_tokenize(string)
@@ -81,7 +97,7 @@ class FwdIndex:
         return len(self.docs) - 1
 
     def dump(self):
-        if(self.shouldDump == False): return
+        # if(self.shouldDump == False): return
         with open(self.path, "w") as outfile:
             json.dump(self.docs, outfile)
 
