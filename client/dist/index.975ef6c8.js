@@ -2905,7 +2905,7 @@ var _reactDom = require("react-dom");
 var _reactDomDefault = parcelHelpers.interopDefault(_reactDom);
 const App = ()=>{
     return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("h1", {
-        children: "Hi DSA Sucks!"
+        children: "Hi Umerkhan Suckms!"
     }, void 0, false, {
         fileName: "src/index.js",
         lineNumber: 5,

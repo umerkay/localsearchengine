@@ -38,3 +38,5 @@ class InvIndex:
     def dump(self):
         with open(self.path, "w") as outfile:
             json.dump(self.wordIDs, outfile)
+
+invInd = InvIndex("outputs/invIndex.json")

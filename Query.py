@@ -32,7 +32,6 @@ class Query:
 
     def rankResults(self):
         rankedResults = {}
-        print(self.wordIDs)
         for i, wordResults in enumerate(self.results):
             for docEntry in wordResults:
                 docID = docEntry[0]

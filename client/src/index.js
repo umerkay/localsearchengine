@@ -2,7 +2,7 @@ import ReactDOM from 'react-dom'
 
 const App = () => {
     return (
-        <h1>Hi DSA Sucks!</h1>
+        <h1>Hi Umerkhan Suckms!</h1>
     )
 }
 

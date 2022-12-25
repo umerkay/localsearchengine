@@ -13,8 +13,8 @@ class Lexicon:
     def loadFromStorage(self):
         with open(self.path, 'r') as f:
             data = json.load(f)
-            self.words = data["words"]
-            self.len = data["len"]
+            self.words = data
+            self.len = len(self.words)
 
         print(emoji("✔"), " Loaded",self.len,"words in lexicon")
 
@@ -22,7 +22,6 @@ class Lexicon:
         if(word in self.words): return self.words[word]
 
         self.words[word] = self.len
-        # print(word, self.words[word])
         self.len += 1
         self.shouldDump = True
         return self.len - 1
@@ -33,4 +32,6 @@ class Lexicon:
     def dump(self):
         if(self.shouldDump):
             with open(self.path, "w") as outfile:
-                json.dump({ "words": self.words, "len": self.len }, outfile)
+                json.dump(self.words, outfile)
+
+# lex = Lexicon("outputs/lexicon.json")
