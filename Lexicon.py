@@ -27,11 +27,12 @@ class Lexicon:
         return self.len - 1
 
     def getWordID(self, word):
-        return self.words[word]
+        return self.words[word] if word in self.words else -1
 
     def dump(self):
         if(self.shouldDump):
             with open(self.path, "w") as outfile:
                 json.dump(self.words, outfile)
+        print("Lexicon saved")
 
 # lex = Lexicon("outputs/lexicon.json")

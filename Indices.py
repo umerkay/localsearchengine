@@ -4,12 +4,21 @@ from InvIndex import invInd
 from Lexicon import Lexicon
 from timeit import default_timer as timer
 from helperfuncs import emoji
+from helperfuncs import stop_words, stemmer
 from threading import Thread
 import os
+from nltk.tokenize import word_tokenize, WordPunctTokenizer
+from concurrent.futures import ProcessPoolExecutor, ThreadPoolExecutor
+import numpy
+import json
+import threading
 
-def genIndices(fileToIndex):
+tokenizer = WordPunctTokenizer()
 
-    lex = Lexicon("outputs/lexicon.json")
+def genIndices(fileToIndex, hasloaded = False, lex = None):
+
+    if(not hasloaded):
+        lex = Lexicon("outputs/lexicon.json")
 
     print("Working on it...")
     print("Generating Forward Indices...")
@@ -35,15 +44,21 @@ def genIndices(fileToIndex):
     elapsed = timer() - start
     print(emoji("🕗"), "Inv Index took ", (str(round(elapsed * 1000)) + "ms") if elapsed < 1 else (str(round(elapsed, 2)) + "s"))
 
-    start = timer()
+    # start = timer()
+    def dumps():
+        invInd.dump()
+        fwdInd.dump(False)
+        lex.dump()
+
     #can do this in thread
-    invInd.dump()
-    fwdInd.dump()
-    lex.dump()
+    t1 = threading.Thread(target=dumps)
+ 
+    # starting thread 1
+    t1.start()
 
-    elapsed = timer() - start
-    print(emoji("🕗"), "Dumping took ", (str(round(elapsed * 1000)) + "ms") if elapsed < 1 else (str(round(elapsed, 2)) + "s"))
-
+    # elapsed = timer() - start
+    # print(emoji("🕗"), "Dumping took ", (str(round(elapsed * 1000)) + "ms") if elapsed < 1 else (str(round(elapsed, 2)) + "s"))
+    print(emoji("🚛"), "Dumping in background...")
 
 def loadIndices():
     lex = Lexicon("outputs/lexicon.json")
@@ -51,21 +66,21 @@ def loadIndices():
     start = timer()
 
     lex.loadFromStorage()
-    fwdInd.loadFromStorage()
+    fwdInd.loadDocTableOnly()
     invInd.loadFromStorage()
 
     elapsed = timer() - start
     print(emoji("🕗"), "Loading took ", (str(round(elapsed * 1000)) + "ms") if elapsed < 1 else (str(round(elapsed, 2)) + "s"))
 
 
-    start = timer()
+    # start = timer()
 
     # # print(Query(fwdInd, invInd, lex, "rift last").getResults().rankResults())
     # # print(Query(fwdInd, invInd, lex, "last rift").getResults().rankResults())
-    print(Query(fwdInd, invInd, lex, "president").getResults().rankResults())
+    # print(Query(fwdInd, invInd, lex, "president").getResults().rankResults())
     # # print(Query(fwdInd, invInd, lex, "last").getResults().rankResults())
 
-    elapsed = timer() - start
-    print(emoji("🕗"), "Query took ", (str(round(elapsed * 1000)) + "ms") if elapsed < 1 else (str(round(elapsed, 2)) + "s"))
-
+    # elapsed = timer() - start
+    # print(emoji("🕗"), "Query took ", (str(round(elapsed * 1000)) + "ms") if elapsed < 1 else (str(round(elapsed, 2)) + "s"))
+    return lex, fwdInd, invInd
    

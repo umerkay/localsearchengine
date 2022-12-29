@@ -1,0 +1,180 @@
+* {
+  box-sizing: border-box;
+  padding: 0px;
+  margin: 0px;
+}
+
+@-webkit-keyframes loadtext {
+  from {
+    width: 0%;
+  }
+  to {
+    width: 60%;
+  }
+}
+
+@keyframes loadtext {
+  from {
+    width: 0%;
+  }
+  to {
+    width: 60%;
+  }
+}
+.AppContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  max-height: 100vh;
+  background-image: url("./bg.svg");
+  background-position: center;
+  background-size: cover;
+  padding: 0.4rem;
+  max-height: 100vh;
+}
+
+.App {
+  text-align: center;
+  min-height: 100vh;
+  max-width: 700px;
+  width: 700px;
+  display: grid;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  grid-auto-rows: 1fr 8fr;
+}
+.App .search {
+  padding: 0rem 3rem;
+  margin-top: 2rem;
+  display: grid;
+  grid-template-columns: 10fr 1fr 1fr;
+  gap: 0.5rem;
+}
+.App .search input {
+  background-color: white;
+  box-shadow: 0px 0px 10px 1px rgba(0, 0, 0, 0.099);
+  transition-duration: 200ms;
+  outline: none;
+  border: 0px solid;
+  border-radius: 100rem;
+  padding: 1rem 1.25rem;
+  font-size: 1rem;
+}
+.App .search input:hover {
+  box-shadow: 0px 0px 10px 1px rgba(0, 0, 0, 0.199);
+  transition-duration: 200ms;
+}
+.App .search .submitSearch, .App .search .btn {
+  display: block;
+  border-radius: 100rem;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgb(6, 123, 236);
+  background: linear-gradient(152deg, rgb(6, 123, 236) 0%, rgb(123, 0, 255) 100%);
+  box-shadow: 0px 0px 10px 1px rgba(0, 0, 0, 0.099);
+  transition-duration: 200ms;
+}
+.App .search .submitSearch:hover, .App .search .btn:hover {
+  box-shadow: 0px 0px 10px 1px rgba(0, 0, 0, 0.199);
+  transition-duration: 200ms;
+}
+.App .docsContainer {
+  min-height: 100%;
+  overflow-y: auto;
+  max-height: 85vh;
+  padding: 0rem 1rem;
+  min-width: 100%;
+  gap: 1rem;
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+}
+.App .docsContainer > span {
+  font-weight: bold;
+  font-size: 0.9rem;
+}
+.App .docsContainer .docs {
+  min-width: 100%;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+.App .docsContainer .docs .searchDoc {
+  width: 100%;
+  background-color: rgb(255, 255, 255);
+  box-shadow: 0px 0px 10px 1px rgba(0, 0, 0, 0.099);
+  transition-duration: 200ms;
+  border-radius: 1rem;
+  padding: 1rem;
+  text-align: left;
+  text-decoration: none;
+  color: rgb(36, 36, 36);
+  position: relative;
+  min-height: 6rem;
+}
+.App .docsContainer .docs .searchDoc.dummy .title, .App .docsContainer .docs .searchDoc.dummy .about {
+  background-color: rgb(231, 231, 231);
+  height: 1.25rem;
+  width: 60%;
+  border-radius: 10rem;
+  -webkit-animation-name: loadtext;
+          animation-name: loadtext;
+  -webkit-animation-duration: 1s;
+          animation-duration: 1s;
+  -webkit-animation-timing-function: ease-in-out;
+          animation-timing-function: ease-in-out;
+}
+.App .docsContainer .docs .searchDoc.dummy .about {
+  height: 0.8rem;
+}
+.App .docsContainer .docs .searchDoc:hover {
+  box-shadow: 0px 0px 10px 1px rgba(0, 0, 0, 0.199);
+  transition-duration: 200ms;
+}
+.App .docsContainer .docs .searchDoc.relevant {
+  grid-column: 1/3;
+}
+.App .docsContainer .docs .searchDoc .imp {
+  font-weight: bold;
+  font-size: 0.8rem;
+}
+.App .docsContainer .docs .searchDoc .imp span {
+  margin-left: 0.2rem;
+}
+.App .docsContainer .docs .searchDoc .title {
+  font-weight: bold;
+  font-size: 1.1rem;
+  margin-bottom: 0.5rem;
+}
+.App .docsContainer .docs .searchDoc .title:hover {
+  text-decoration: underline;
+}
+.App .docsContainer .docs .searchDoc .about {
+  position: absolute;
+  bottom: 1rem;
+  right: 1rem;
+  font-size: 0.8rem;
+  display: flex;
+  align-items: center;
+}
+.App .docsContainer .docs .searchDoc .about svg {
+  margin-right: 0.25rem;
+  margin-left: 0.25rem;
+}
+
+.loading {
+  display: block;
+  text-align: center;
+  padding: 2rem 1rem;
+  padding-top: 0rem;
+  color: white;
+}
+
+.spinner {
+  height: 80px;
+  margin: auto;
+}/*# sourceMappingURL=App.css.map */
