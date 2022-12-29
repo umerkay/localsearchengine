@@ -1,5 +1,21 @@
 # Local Search Engine in Python
 
+# Readme depreciated, will update soon
+To run the latest commit, run the following command in the project root.
+
+```flask run```
+
+This loads the indexes into memory. You can run the react development frontend server by running
+
+```
+cd client
+npm start
+```
+
+You can now perform search queries.
+
+For the latest commit, none of the text below applies.
+
 ## About this Submission
 
 This is a very basic readme file for the purposes of fulfilling the basic deliverable of the project. This readme will be updated as work is done on the project
