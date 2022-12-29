@@ -9,13 +9,25 @@ import { reducer, initialState } from './Reducer';
 
 const App = () => {
   const [state, dispatch] = useReducer(reducer, initialState);
-  const [page, setPage] = useState(0)
+  const [page, setPage] = useState(1)
 
   const { docs, errorMessage, loading, time, totalResults } = state;
 
   const baseUrl = "" //process.env.PUBLIC_URL;
 
   const search = (...args) => SearchReq(dispatch, ...args);
+  const [userName, setUserName] = useState('Name');
+
+  useEffect(() => {
+    const storedUserName = localStorage.getItem('userName');
+    if (storedUserName) {
+      setUserName(storedUserName);
+    } else setUserName("Name?")
+  }, []);
+
+  useEffect(() => {
+    localStorage.setItem('userName', userName);
+  }, [userName]);
 
   return (
     <div className="AppContainer">
@@ -23,8 +35,8 @@ const App = () => {
         <Router>
           <Switch>
             <Route path={baseUrl + "/"} exact render={props => (<>
-              {/* <Header focus={true} /> */}
               <Search search={search} page={page} setPage={setPage}/>
+              <Header name={userName} setName={e => setUserName(e.target.value)}/>
             </>
             )}></Route>
 

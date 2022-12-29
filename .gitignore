@@ -1,6 +1,7 @@
 __pycache__
 client/.parcel-cache
 client/node_modules
+outputs
 outputs/docTable.json
 outputs/fwdIndex.json
 outputs/invIndex.json
@@ -8,3 +9,4 @@ outputs/lexicon.json
 data
 data2
 data3
+data4

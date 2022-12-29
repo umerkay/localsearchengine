@@ -4,7 +4,7 @@ export const SearchReq = (dispatch, searchValue, page, pageSize = 11) => {
         type: "SEARCH_DOCS_REQUEST"
     });
 
-    fetch(`/api/search?q=${searchValue.trim()}&pageStart=${page}&pageSize=${pageSize}`)
+    fetch(`/search?q=${searchValue.trim()}&pageStart=${page - 1}&pageSize=${pageSize}`)
         .then(response => response.json())
         .then(jsonResponse => {
             console.log(jsonResponse)

@@ -1,17 +1,21 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 
-export default function Header({ focus }) {
+export default function Header({name, setName}) {
   return (
-    <header className={"App-header" + (focus ? " focus" : "")}>
-      <Link style={{ color: "white", textDecoration: "none", fontWeight: "bold" }} to="/" className="title">Watch<span className='primary'>Today</span></Link>
-      <span className="details">
-        Can not decide which movie to watch today? You are in the right place
-        <br></br>
-        <span className="info">This application is only a demonstration of Umer's frontend skills with React, a JavaScript framework</span>
-        <br></br>
-        <a style={{ color: "white", textDecoration: "none", fontSize: "1rem" }} href="https://umerkay.github.io">Click here to get back to my portfolio</a>
-      </span>
+    <header className={"App-header"}>
+      <div className='con'>
+        <span className="title">
+          <span> Hello,</span>
+          <input type={"text"} onInput={setName} spellCheck={false} value={name}></input>
+        </span>
+        <span className="details">
+          <span>This project has been made as part of the coursework required for CS250 Data Structures & Algorithms.
+          The project demonstrates text indexing and querying capabilities.</span>
+          <a href="https://github.com/umerkay/localsearchengine">Visit GitHub</a>
+          <span>Made with 💖 by <a href="https://umerkay.github.io">Umerkay</a></span>
+        </span>
+      </div>
     </header>
   )
 }

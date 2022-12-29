@@ -70,7 +70,7 @@ def loadIndices():
     invInd.loadFromStorage()
 
     elapsed = timer() - start
-    print(emoji("🕗"), "Loading took ", (str(round(elapsed * 1000)) + "ms") if elapsed < 1 else (str(round(elapsed, 2)) + "s"))
+    # print(emoji("🕗"), "Loading took ", (str(round(elapsed * 1000)) + "ms") if elapsed < 1 else (str(round(elapsed, 2)) + "s"))
 
 
     # start = timer()

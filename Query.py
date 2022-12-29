@@ -45,13 +45,16 @@ class Query:
                 #tf = count / totalwords (0 < tf <= 1)
                 #idf = totalDocs / noOfDocsWithWord  (1 + 1 < idf <= totalDocs)
                 #ipx = totalWords / firstIndex (1 < px < totalwords)
-                tf = (count) / (self.fwdInd.docTable[docID][1])
+                temp = self.fwdInd.docTable[docID][1]
+                tf = (count) / (temp)
                 idf = 1 + (len(self.fwdInd.docTable) / len(self.invInd.wordIDs[self.wordIDs[i]]))
                 ipx = (self.fwdInd.docTable[docID][1]) / firstOccurence #inverse proximity
 
                 # docID = self.fwdInd.docTable[docID][0]
                 if(docID in rankedResults):
-                    rankedResults[docID] += tf * math.log(idf * ipx)
+                    rankedResults[docID] += tf * math.log(idf * ipx * ipx)
+                    rankedResults[docID] *= 2
+
                 else:
                     rankedResults[docID] = tf * math.log(idf * ipx)
                 #dont change the docentry obj pls it changes the invindex
@@ -70,7 +73,7 @@ class Query:
         # return self.results
         start = pageStart * pageSize
         end = min(pageStart * pageSize + pageSize - 1, len(self.results) - 1)
-        return (list(map((lambda el: {"Title":  self.fwdInd.docTable[el[0]][0], "Score": el[1]}), self.results[start:end+1])), len(self.results))
+        return (list(map((lambda el: {"Title":  self.fwdInd.docTable[el[0]][0], "url":  self.fwdInd.docTable[el[0]][2], "Score": el[1]}), self.results[start:end+1])), len(self.results))
 
     def setQueryText(self, text):
         self.queryText = text

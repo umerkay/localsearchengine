@@ -30,7 +30,7 @@ export default function DocsContainer({ setPage, page, loading, errorMessage, do
           </span>
           <div className="docs">
             {docs.map((doc, index) => (
-              <SearchDoc key={index} doc={doc} relevance={page === 0 && index < 3}/>
+              <SearchDoc key={index} doc={doc} relevance={page === 1 && index < 3}/>
             ))}
           </div></>
         )
@@ -46,7 +46,7 @@ export default function DocsContainer({ setPage, page, loading, errorMessage, do
       <div className="info">
         {totalResults > 0 ? (
           <div className="pagenation">Page
-          <input type="number" value={page} onInput={e => setPage(e.target.value)} />
+          <input type="number" value={page} min={1} onInput={e => setPage(e.target.value)} />
           of {Math.ceil(totalResults / 11)}</div>
         ) : null
         }

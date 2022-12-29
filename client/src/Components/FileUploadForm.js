@@ -16,7 +16,7 @@ function FileUploadForm() {
     }
 
     setIsLoading(true);
-    fetch("/api/upload", {
+    fetch("/upload", {
       method: "POST",
       body: formData,
     }).then(res => res.json()).then(json => {

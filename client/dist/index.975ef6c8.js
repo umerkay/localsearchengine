@@ -27277,11 +27277,22 @@ var _s = $RefreshSig$();
 const App = ()=>{
     _s();
     const [state, dispatch] = (0, _react.useReducer)((0, _reducer.reducer), (0, _reducer.initialState));
-    const [page, setPage] = (0, _react.useState)(0);
+    const [page, setPage] = (0, _react.useState)(1);
     const { docs , errorMessage , loading , time , totalResults  } = state;
     const baseUrl = "" //process.env.PUBLIC_URL;
     ;
     const search = (...args)=>(0, _search.SearchReq)(dispatch, ...args);
+    const [userName, setUserName] = (0, _react.useState)("Name");
+    (0, _react.useEffect)(()=>{
+        const storedUserName = localStorage.getItem("userName");
+        if (storedUserName) setUserName(storedUserName);
+        else setUserName("Name?");
+    }, []);
+    (0, _react.useEffect)(()=>{
+        localStorage.setItem("userName", userName);
+    }, [
+        userName
+    ]);
     return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
         className: "AppContainer",
         children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
@@ -27293,15 +27304,21 @@ const App = ()=>{
                             path: baseUrl + "/",
                             exact: true,
                             render: (props)=>/*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _jsxDevRuntime.Fragment), {
-                                    children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _searchDefault.default), {
-                                        search: search,
-                                        page: page,
-                                        setPage: setPage
-                                    }, void 0, false, void 0, void 0)
-                                }, void 0, false)
+                                    children: [
+                                        /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _searchDefault.default), {
+                                            search: search,
+                                            page: page,
+                                            setPage: setPage
+                                        }, void 0, false, void 0, void 0),
+                                        /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _headerDefault.default), {
+                                            name: userName,
+                                            setName: (e)=>setUserName(e.target.value)
+                                        }, void 0, false, void 0, void 0)
+                                    ]
+                                }, void 0, true)
                         }, void 0, false, {
                             fileName: "src/App.js",
-                            lineNumber: 25,
+                            lineNumber: 37,
                             columnNumber: 13
                         }, undefined),
                         /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactRouterDom.Route), {
@@ -27329,32 +27346,32 @@ const App = ()=>{
                                 }, void 0, true)
                         }, void 0, false, {
                             fileName: "src/App.js",
-                            lineNumber: 31,
+                            lineNumber: 43,
                             columnNumber: 13
                         }, undefined)
                     ]
                 }, void 0, true, {
                     fileName: "src/App.js",
-                    lineNumber: 24,
+                    lineNumber: 36,
                     columnNumber: 11
                 }, undefined)
             }, void 0, false, {
                 fileName: "src/App.js",
-                lineNumber: 23,
+                lineNumber: 35,
                 columnNumber: 9
             }, undefined)
         }, void 0, false, {
             fileName: "src/App.js",
-            lineNumber: 22,
+            lineNumber: 34,
             columnNumber: 7
         }, undefined)
     }, void 0, false, {
         fileName: "src/App.js",
-        lineNumber: 21,
+        lineNumber: 33,
         columnNumber: 5
     }, undefined);
 };
-_s(App, "ytOjuDS7l2kWPtgkYokdRAFlnHM=");
+_s(App, "V0jRPXNb5fdI9JunwM075781ARU=");
 _c = App;
 exports.default = App;
 var _c;
@@ -27378,77 +27395,86 @@ var _jsxDevRuntime = require("react/jsx-dev-runtime");
 var _react = require("react");
 var _reactDefault = parcelHelpers.interopDefault(_react);
 var _reactRouterDom = require("react-router-dom");
-function Header({ focus  }) {
+function Header({ name , setName  }) {
     return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("header", {
-        className: "App-header" + (focus ? " focus" : ""),
-        children: [
-            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactRouterDom.Link), {
-                style: {
-                    color: "white",
-                    textDecoration: "none",
-                    fontWeight: "bold"
-                },
-                to: "/",
-                className: "title",
-                children: [
-                    "Watch",
-                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("span", {
-                        className: "primary",
-                        children: "Today"
-                    }, void 0, false, {
-                        fileName: "src/Components/Header.js",
-                        lineNumber: 7,
-                        columnNumber: 114
-                    }, this)
-                ]
-            }, void 0, true, {
-                fileName: "src/Components/Header.js",
-                lineNumber: 7,
-                columnNumber: 7
-            }, this),
-            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("span", {
-                className: "details",
-                children: [
-                    "Can not decide which movie to watch today? You are in the right place",
-                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("br", {}, void 0, false, {
-                        fileName: "src/Components/Header.js",
-                        lineNumber: 10,
-                        columnNumber: 9
-                    }, this),
-                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("span", {
-                        className: "info",
-                        children: "This application is only a demonstration of Umer's frontend skills with React, a JavaScript framework"
-                    }, void 0, false, {
-                        fileName: "src/Components/Header.js",
-                        lineNumber: 11,
-                        columnNumber: 9
-                    }, this),
-                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("br", {}, void 0, false, {
-                        fileName: "src/Components/Header.js",
-                        lineNumber: 12,
-                        columnNumber: 9
-                    }, this),
-                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("a", {
-                        style: {
-                            color: "white",
-                            textDecoration: "none",
-                            fontSize: "1rem"
-                        },
-                        href: "https://umerkay.github.io",
-                        children: "Click here to get back to my portfolio"
-                    }, void 0, false, {
-                        fileName: "src/Components/Header.js",
-                        lineNumber: 13,
-                        columnNumber: 9
-                    }, this)
-                ]
-            }, void 0, true, {
-                fileName: "src/Components/Header.js",
-                lineNumber: 8,
-                columnNumber: 7
-            }, this)
-        ]
-    }, void 0, true, {
+        className: "App-header",
+        children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+            className: "con",
+            children: [
+                /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("span", {
+                    className: "title",
+                    children: [
+                        /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("span", {
+                            children: " Hello,"
+                        }, void 0, false, {
+                            fileName: "src/Components/Header.js",
+                            lineNumber: 9,
+                            columnNumber: 11
+                        }, this),
+                        /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("input", {
+                            type: "text",
+                            onInput: setName,
+                            spellCheck: false,
+                            value: name
+                        }, void 0, false, {
+                            fileName: "src/Components/Header.js",
+                            lineNumber: 10,
+                            columnNumber: 11
+                        }, this)
+                    ]
+                }, void 0, true, {
+                    fileName: "src/Components/Header.js",
+                    lineNumber: 8,
+                    columnNumber: 9
+                }, this),
+                /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("span", {
+                    className: "details",
+                    children: [
+                        /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("span", {
+                            children: "This project has been made as part of the coursework required for CS250 Data Structures & Algorithms. The project demonstrates text indexing and querying capabilities."
+                        }, void 0, false, {
+                            fileName: "src/Components/Header.js",
+                            lineNumber: 13,
+                            columnNumber: 11
+                        }, this),
+                        /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("a", {
+                            href: "https://github.com/umerkay/localsearchengine",
+                            children: "Visit GitHub"
+                        }, void 0, false, {
+                            fileName: "src/Components/Header.js",
+                            lineNumber: 15,
+                            columnNumber: 11
+                        }, this),
+                        /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("span", {
+                            children: [
+                                "Made with \uD83D\uDC96 by ",
+                                /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("a", {
+                                    href: "https://umerkay.github.io",
+                                    children: "Umerkay"
+                                }, void 0, false, {
+                                    fileName: "src/Components/Header.js",
+                                    lineNumber: 16,
+                                    columnNumber: 32
+                                }, this)
+                            ]
+                        }, void 0, true, {
+                            fileName: "src/Components/Header.js",
+                            lineNumber: 16,
+                            columnNumber: 11
+                        }, this)
+                    ]
+                }, void 0, true, {
+                    fileName: "src/Components/Header.js",
+                    lineNumber: 12,
+                    columnNumber: 9
+                }, this)
+            ]
+        }, void 0, true, {
+            fileName: "src/Components/Header.js",
+            lineNumber: 7,
+            columnNumber: 7
+        }, this)
+    }, void 0, false, {
         fileName: "src/Components/Header.js",
         lineNumber: 6,
         columnNumber: 5
@@ -55165,8 +55191,10 @@ function Modal({ isOpen , closeModal  }) {
     //   });
     return isOpen ? /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactSpring.animated).div, {
         className: "modal",
+        onClick: closeModal,
         children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
             className: "modalChild",
+            onClick: (e)=>e.stopPropagation(),
             children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
                 className: "modal-body",
                 children: [
@@ -55195,7 +55223,7 @@ function Modal({ isOpen , closeModal  }) {
                             }, void 0, false, {
                                 fileName: "src/Components/Modal.js",
                                 lineNumber: 21,
-                                columnNumber: 9
+                                columnNumber: 15
                             }, this)
                         ]
                     }, void 0, true, {
@@ -55230,7 +55258,7 @@ $RefreshReg$(_c, "Modal");
   window.$RefreshReg$ = prevRefreshReg;
   window.$RefreshSig$ = prevRefreshSig;
 }
-},{"react/jsx-dev-runtime":"iTorj","react":"21dqq","react-spring":"2gPbQ","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru","./FileUploadForm":"9xoMg","@fortawesome/react-fontawesome":"clIT3","@fortawesome/free-solid-svg-icons":"5lkdy"}],"2gPbQ":[function(require,module,exports) {
+},{"react/jsx-dev-runtime":"iTorj","react":"21dqq","react-spring":"2gPbQ","./FileUploadForm":"9xoMg","@fortawesome/react-fontawesome":"clIT3","@fortawesome/free-solid-svg-icons":"5lkdy","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru"}],"2gPbQ":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 var _web = require("@react-spring/web");
@@ -58947,7 +58975,7 @@ function FileUploadForm() {
         const files = event.target.elements.files.files;
         for(let i = 0; i < files.length; i++)formData.append("files", files[i]);
         setIsLoading(true);
-        fetch("/api/upload", {
+        fetch("/upload", {
             method: "POST",
             body: formData
         }).then((res)=>res.json()).then((json)=>{
@@ -59039,7 +59067,7 @@ $RefreshReg$(_c, "FileUploadForm");
   window.$RefreshReg$ = prevRefreshReg;
   window.$RefreshSig$ = prevRefreshSig;
 }
-},{"react/jsx-dev-runtime":"iTorj","react":"21dqq","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru","@fortawesome/react-fontawesome":"clIT3","@fortawesome/free-solid-svg-icons":"5lkdy"}],"fh4Dz":[function(require,module,exports) {
+},{"react/jsx-dev-runtime":"iTorj","react":"21dqq","@fortawesome/react-fontawesome":"clIT3","@fortawesome/free-solid-svg-icons":"5lkdy","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru"}],"fh4Dz":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "initialState", ()=>initialState);
@@ -59107,7 +59135,7 @@ const SearchReq = (dispatch, searchValue, page, pageSize = 11)=>{
     dispatch({
         type: "SEARCH_DOCS_REQUEST"
     });
-    fetch(`/api/search?q=${searchValue.trim()}&pageStart=${page}&pageSize=${pageSize}`).then((response)=>response.json()).then((jsonResponse)=>{
+    fetch(`/search?q=${searchValue.trim()}&pageStart=${page - 1}&pageSize=${pageSize}`).then((response)=>response.json()).then((jsonResponse)=>{
         console.log(jsonResponse);
         if (jsonResponse.Response === true) dispatch({
             type: "SEARCH_DOCS_SUCCESS",
@@ -59204,7 +59232,7 @@ function DocsContainer({ setPage , page , loading , errorMessage , docs , search
                         className: "docs",
                         children: docs.map((doc, index)=>/*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _searchDocDefault.default), {
                                 doc: doc,
-                                relevance: page === 0 && index < 3
+                                relevance: page === 1 && index < 3
                             }, index, false, {
                                 fileName: "src/Components/DocContainer.js",
                                 lineNumber: 33,
@@ -59244,6 +59272,7 @@ function DocsContainer({ setPage , page , loading , errorMessage , docs , search
                         /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("input", {
                             type: "number",
                             value: page,
+                            min: 1,
                             onInput: (e)=>setPage(e.target.value)
                         }, void 0, false, {
                             fileName: "src/Components/DocContainer.js",
@@ -59362,7 +59391,7 @@ function SearchDoc({ doc , relevance , isDummy =false  }) {
         }, this) : /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _jsxDevRuntime.Fragment), {
             children: relevance ? /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("a", {
                 className: "searchDoc relevant",
-                href: "https://" + doc.Url,
+                href: doc.url,
                 children: [
                     /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
                         className: "imp",
@@ -59425,13 +59454,6 @@ function SearchDoc({ doc , relevance , isDummy =false  }) {
                                 fileName: "src/Components/SearchDoc.js",
                                 lineNumber: 29,
                                 columnNumber: 15
-                            }, this),
-                            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("span", {
-                                children: doc.Score
-                            }, void 0, false, {
-                                fileName: "src/Components/SearchDoc.js",
-                                lineNumber: 30,
-                                columnNumber: 15
                             }, this)
                         ]
                     }, void 0, true, {
@@ -59446,7 +59468,7 @@ function SearchDoc({ doc , relevance , isDummy =false  }) {
                 columnNumber: 13
             }, this) : /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("a", {
                 className: "searchDoc",
-                href: "https://" + doc.Url,
+                href: doc.url,
                 children: [
                     /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
                         className: "title",
@@ -59485,13 +59507,6 @@ function SearchDoc({ doc , relevance , isDummy =false  }) {
                             }, void 0, false, {
                                 fileName: "src/Components/SearchDoc.js",
                                 lineNumber: 39,
-                                columnNumber: 15
-                            }, this),
-                            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("span", {
-                                children: doc.Score
-                            }, void 0, false, {
-                                fileName: "src/Components/SearchDoc.js",
-                                lineNumber: 40,
                                 columnNumber: 15
                             }, this)
                         ]

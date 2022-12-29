@@ -30,9 +30,9 @@ tokenizer = WordPunctTokenizer()
 def processDoc1(doc):
     words = tokenizer.tokenize(doc["content"])
     wordsintitle = tokenizer.tokenize(doc["title"])
-    words[0:0] = wordsintitle
-    # words2 = []
-    words2 = [doc["id"], len(wordsintitle)]
+    words[0:0] = wordsintitle #merge the two word lists
+    # store some info about document for later
+    words2 = [doc["id"], len(wordsintitle), doc["url"]]
     for i in range(len(words)):
         word_lower = words[i].lower()
         if word_lower.isalpha() and word_lower not in stop_words:
@@ -92,7 +92,7 @@ class FwdIndex:
             with ProcessPoolExecutor() as executor:
                 data = list(executor.map(processDoc1, data))
 
-            lexWords = numpy.unique([doc[i] for doc in data for i in range(2,len(doc))])
+            lexWords = numpy.unique([doc[i] for doc in data for i in range(3,len(doc))])
             for word in lexWords:
                 lexiconObj.addWord(word)
 
@@ -100,18 +100,15 @@ class FwdIndex:
             for doc in data:
                 docFwdInd = {}
                 # doc[0] is docid and doc[1] is the length of title
-                self.docTable.append([doc[0], len(doc)])
-                for i in range(2, len(doc)):
+                self.docTable.append([doc[0], len(doc), doc[2]])
+                for i in range(3, len(doc)):
                         id = str(lexiconObj.getWordID(doc[i]))
 
-                        # if(id in docFwdInd):
-                        #     docFwdInd[id].append(i)
-                        # else:
-                        #     docFwdInd[id] = [i]
                         if(id in docFwdInd):
                             docFwdInd[id][0] += 1
                         else:
-                            docFwdInd[id] = [1, 1 if i < (doc[1] + 2) else i + 8] #count, first occurence
+                            docFwdInd[id] = [1, 1 if i < (doc[1] + 2) else i + 8]
+                            #count, first occurence
                 
                 self.docs.append(docFwdInd)
         
