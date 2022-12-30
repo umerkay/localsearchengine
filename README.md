@@ -20,6 +20,16 @@ Following UI can be used to index more files of the same format
 
 # Setup 👩‍🔬
 ## Run Application 🚀
+Before running, please create an outputs folder in the project root.
+```
+outputs/
+    lexicon.json
+    invIndex.json
+    fwdIndex.json
+    docTable.json
+```
+Then, before running the flask server, please index files first to avoid errors. (See below for instructions on indexing)
+
 To run the latest commit, run the following command in the project root.
 
 ```flask run```
