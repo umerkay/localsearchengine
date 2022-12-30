@@ -1,4 +1,22 @@
 # Local Search Engine in Python
+This project has been made as part of the coursework required for CS250 Data Structures & Algorithms. The project demonstrates text indexing and querying capabilities.
+
+# Interface
+## Home Page
+A lot of work has been put into the design of the UI
+![image](https://user-images.githubusercontent.com/20483712/210053035-1508eb8a-517f-43e4-9381-39d5026bc789.png)
+
+## Multiword Search
+Multiword and Single word query and ranking can be tested using the provided UI
+![image](https://user-images.githubusercontent.com/20483712/210053056-14c09b0c-ef63-4e39-9798-fa62325fea99.png)
+![image](https://user-images.githubusercontent.com/20483712/210053061-d0ce3370-3ea3-4550-9d0e-6aa665708e62.png)
+
+## Pagenation
+![image](https://user-images.githubusercontent.com/20483712/210053243-cd1572af-5549-4a27-9fcb-4c37d3a90182.png)
+
+## Uploading new files
+Following UI can be used to index more files of the same format
+![image](https://user-images.githubusercontent.com/20483712/210053114-efca01ee-8065-40ca-86c3-9040810fbb27.png)
 
 # Setup 👩‍🔬
 ## Run Application 🚀
