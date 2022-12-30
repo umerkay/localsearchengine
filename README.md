@@ -1,6 +1,6 @@
 # Local Search Engine in Python
 
-# Readme depreciated, will update soon 🕐
+### Readme depreciated, will update soon 🕐
 
 # Setup 👩‍🔬
 ## Run Application 🚀
