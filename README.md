@@ -24,13 +24,6 @@ To run the latest commit, run the following command in the project root.
 
 ```flask run```
 
-This loads the indexes into memory. You can run the react development frontend server by running
-
-```
-cd client
-npm start
-```
-
 You can now perform search queries.
 You can also use the UI to add new documents into the index dynamically, no need to restart the server 🥳
 
