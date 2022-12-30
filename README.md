@@ -1,6 +1,9 @@
 # Local Search Engine in Python
 
-# Readme depreciated, will update soon
+# Readme depreciated, will update soon 🕐
+
+# Setup 👩‍🔬
+## Run Application 🚀
 To run the latest commit, run the following command in the project root.
 
 ```flask run```
@@ -13,14 +16,11 @@ npm start
 ```
 
 You can now perform search queries.
+You can also use the UI to add new documents into the index dynamically, no need to restart the server 🥳
 
-For the latest commit, none of the text below applies.
-
-## About this Submission
-
-This is a very basic readme file for the purposes of fulfilling the basic deliverable of the project. This readme will be updated as work is done on the project
-
-Currently the indexing works, but is not fully optimized.
+## Current Testing
+Around 125k articles can be indexed within 100s, with around 70k words in lexicon.
+Queries and ranking on average take 20 to 30ms
 
 ## Initial Testing
 
@@ -29,7 +29,7 @@ An average one word query takes 20ms to 30ms to execute, including ranking. This
 
 I am using stemming and lemmatization alternately in testing. The current code runs stemming, lemmatization is commented.
 
-## Testing the Indexing
+## Run Indexer 📇
 
 in ```main.py```
 change the fileToIndex variable to change the dataset
@@ -48,6 +48,8 @@ if __name__ == '__main__':
 ```
 
 Run main.py file.
+
+### The details below may not align with the latest commit, as more information has since been added. Refer to project presentation
 
 ## Lexicon and DocTable
 The lexicon is a key value dictionary mapping each word to an assigned wordID
@@ -76,15 +78,5 @@ The inverted index stores a dictionary of wordIDs. Each wordID stores an array o
 }
 ```
 
-# Query
-Query code works but that is not part of the submission.
-
 # Sample Data
 root/data folder holds sample data that has been tested against the current code.
-
-## In-progress Improvements
-
-Indexing uses .json and python dictionaries in storage and memory respectively.
-I might convert code base to use numpy arrays and matrices for this matter to optimize both storage and memory usage. Numpy matrices/arrays will also improve ranking of results in querying
-Most of the code base will remain the same, i will just add a container class to handle partial loading and unloading of data later on.
-The lexicon generation requires further cleaning to cleanly process links or other words joined with punctuation
