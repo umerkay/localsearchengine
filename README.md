@@ -1,7 +1,5 @@
 # Local Search Engine in Python
 
-### Readme depreciated, will update soon 🕐
-
 # Setup 👩‍🔬
 ## Run Application 🚀
 To run the latest commit, run the following command in the project root.
@@ -33,9 +31,10 @@ I am using stemming and lemmatization alternately in testing. The current code r
 
 in ```main.py```
 change the fileToIndex variable to change the dataset
+It takes a directory and forms indexes for all files inside the directory
 
 ```
-fileToIndex = "data/________.json"
+fileToIndex = "data/________"
 
 if __name__ == '__main__':
     genIndices(fileToIndex)
